@@ -32,7 +32,7 @@
             favouritesList = new System.Windows.Forms.ListBox();
             favouritesContextMenu = new System.Windows.Forms.ContextMenuStrip(components);
             deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            BtnClearFavourites = new System.Windows.Forms.Button();
+            BtnClearFavourites = new MaterialThemeCore.MaterialControls.MaterialFlatButton();
             favouritesTooltip = new System.Windows.Forms.ToolTip(components);
             favouritesContextMenu.SuspendLayout();
             SuspendLayout();
@@ -42,7 +42,7 @@
             favouritesList.ContextMenuStrip = favouritesContextMenu;
             favouritesList.FormattingEnabled = true;
             favouritesList.ItemHeight = 20;
-            favouritesList.Location = new System.Drawing.Point(12, 54);
+            favouritesList.Location = new System.Drawing.Point(12, 115);
             favouritesList.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             favouritesList.Name = "favouritesList";
             favouritesList.Size = new System.Drawing.Size(410, 344);
@@ -65,11 +65,17 @@
             // 
             // BtnClearFavourites
             // 
+            BtnClearFavourites.AutoSize = true;
+            BtnClearFavourites.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             BtnClearFavourites.Cursor = System.Windows.Forms.Cursors.Hand;
-            BtnClearFavourites.Image = Properties.Resources.icon_clear_24;
-            BtnClearFavourites.Location = new System.Drawing.Point(386, 11);
+            BtnClearFavourites.Depth = 0;
+            BtnClearFavourites.Icon = Properties.Resources.icon_clear_24;
+            BtnClearFavourites.Location = new System.Drawing.Point(377, 71);
+            BtnClearFavourites.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            BtnClearFavourites.MouseState = MaterialThemeCore.MouseState.HOVER;
             BtnClearFavourites.Name = "BtnClearFavourites";
-            BtnClearFavourites.Size = new System.Drawing.Size(36, 36);
+            BtnClearFavourites.Primary = false;
+            BtnClearFavourites.Size = new System.Drawing.Size(44, 36);
             BtnClearFavourites.TabIndex = 1;
             favouritesTooltip.SetToolTip(BtnClearFavourites, "Clear Favourites");
             BtnClearFavourites.UseVisualStyleBackColor = true;
@@ -79,11 +85,10 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(434, 411);
+            ClientSize = new System.Drawing.Size(434, 474);
             Controls.Add(BtnClearFavourites);
             Controls.Add(favouritesList);
             Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -93,12 +98,13 @@
             Load += FrmFavourites_Load;
             favouritesContextMenu.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.ListBox favouritesList;
-        private System.Windows.Forms.Button BtnClearFavourites;
+        private MaterialThemeCore.MaterialControls.MaterialFlatButton BtnClearFavourites;
         private System.Windows.Forms.ContextMenuStrip favouritesContextMenu;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolTip favouritesTooltip;

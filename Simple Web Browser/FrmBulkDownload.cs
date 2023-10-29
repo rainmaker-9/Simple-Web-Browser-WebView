@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialThemeCore.MaterialControls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
-    public partial class FrmBulkDownload : Form
+    public partial class FrmBulkDownload : MaterialThemeForm
     {
         //private List<HttpWebResponse> responseList;
         public FrmBulkDownload()
@@ -42,10 +43,15 @@ namespace Simple_Web_Browser
                     {
                         if (string.IsNullOrWhiteSpace(line) || string.IsNullOrEmpty(line)) continue;
                         ResponseMessage response = RequestMessage.GetResponseMessage(new Uri(line));
-                        string result = $"{(int)response.StatusCode} - {response.ContentLength} - {line}";
-                        TxtResponse.AppendText($"{result}{Environment.NewLine}");
+                        if(response != null)
+                        {
+                            string result = $"{(int)response.StatusCode} | {response.ContentLength} | {line}";
+                            TxtResponse.AppendText($"{result}{Environment.NewLine}");
+                        }
                     }
+                    LblProcess.Text = string.Empty;
                     Cursor = Cursors.Arrow;
+                    MessageBox.Show("Bulk download request completed.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

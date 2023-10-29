@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialThemeCore.MaterialControls;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
-    public partial class FrmHistory : Form
+    public partial class FrmHistory : MaterialThemeForm
     {
         private readonly string HistoryFile = string.Empty;
         private List<ResponseInfo> historyList = new List<ResponseInfo>();

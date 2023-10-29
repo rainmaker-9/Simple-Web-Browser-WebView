@@ -35,7 +35,7 @@
             Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             historyContextMenu = new System.Windows.Forms.ContextMenuStrip(components);
             deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            BtnClearHistory = new System.Windows.Forms.Button();
+            BtnClearHistory = new MaterialThemeCore.MaterialControls.MaterialFlatButton();
             historyTooltip = new System.Windows.Forms.ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)DGVHistory).BeginInit();
             historyContextMenu.SuspendLayout();
@@ -49,13 +49,13 @@
             DGVHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGVHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { Title, Address, Date });
             DGVHistory.ContextMenuStrip = historyContextMenu;
-            DGVHistory.Location = new System.Drawing.Point(14, 55);
+            DGVHistory.Location = new System.Drawing.Point(14, 125);
             DGVHistory.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             DGVHistory.Name = "DGVHistory";
             DGVHistory.ReadOnly = true;
             DGVHistory.RowTemplate.Height = 25;
             DGVHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            DGVHistory.Size = new System.Drawing.Size(598, 373);
+            DGVHistory.Size = new System.Drawing.Size(649, 373);
             DGVHistory.TabIndex = 0;
             DGVHistory.CellMouseDoubleClick += DGVHistory_CellMouseDoubleClick;
             DGVHistory.KeyDown += DGVHistory_KeyDown;
@@ -96,11 +96,17 @@
             // 
             // BtnClearHistory
             // 
+            BtnClearHistory.AutoSize = true;
+            BtnClearHistory.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             BtnClearHistory.Cursor = System.Windows.Forms.Cursors.Hand;
-            BtnClearHistory.Image = Properties.Resources.icon_clear_24;
-            BtnClearHistory.Location = new System.Drawing.Point(576, 12);
+            BtnClearHistory.Depth = 0;
+            BtnClearHistory.Icon = Properties.Resources.icon_clear_24;
+            BtnClearHistory.Location = new System.Drawing.Point(618, 79);
+            BtnClearHistory.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            BtnClearHistory.MouseState = MaterialThemeCore.MouseState.HOVER;
             BtnClearHistory.Name = "BtnClearHistory";
-            BtnClearHistory.Size = new System.Drawing.Size(36, 36);
+            BtnClearHistory.Primary = false;
+            BtnClearHistory.Size = new System.Drawing.Size(44, 36);
             BtnClearHistory.TabIndex = 2;
             historyTooltip.SetToolTip(BtnClearHistory, "Clear History");
             BtnClearHistory.UseVisualStyleBackColor = true;
@@ -110,11 +116,10 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(624, 441);
+            ClientSize = new System.Drawing.Size(675, 511);
             Controls.Add(BtnClearHistory);
             Controls.Add(DGVHistory);
             Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -125,12 +130,13 @@
             ((System.ComponentModel.ISupportInitialize)DGVHistory).EndInit();
             historyContextMenu.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView DGVHistory;
-        private System.Windows.Forms.Button BtnClearHistory;
+        private MaterialThemeCore.MaterialControls.MaterialFlatButton BtnClearHistory;
         private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;

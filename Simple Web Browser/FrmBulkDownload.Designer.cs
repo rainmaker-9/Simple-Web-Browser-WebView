@@ -28,17 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            BtnSelectFile = new System.Windows.Forms.Button();
+            BtnSelectFile = new MaterialThemeCore.MaterialControls.MaterialFlatButton();
             TxtResponse = new System.Windows.Forms.TextBox();
-            LblProcess = new System.Windows.Forms.Label();
+            LblProcess = new MaterialThemeCore.MaterialControls.MaterialLabel();
             SuspendLayout();
             // 
             // BtnSelectFile
             // 
-            BtnSelectFile.Location = new System.Drawing.Point(12, 16);
+            BtnSelectFile.AutoSize = true;
+            BtnSelectFile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            BtnSelectFile.Depth = 0;
+            BtnSelectFile.Icon = null;
+            BtnSelectFile.Location = new System.Drawing.Point(12, 82);
             BtnSelectFile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            BtnSelectFile.MouseState = MaterialThemeCore.MouseState.HOVER;
             BtnSelectFile.Name = "BtnSelectFile";
-            BtnSelectFile.Size = new System.Drawing.Size(86, 31);
+            BtnSelectFile.Primary = false;
+            BtnSelectFile.Size = new System.Drawing.Size(100, 36);
             BtnSelectFile.TabIndex = 0;
             BtnSelectFile.Text = "Select File";
             BtnSelectFile.UseVisualStyleBackColor = true;
@@ -46,19 +52,23 @@
             // 
             // TxtResponse
             // 
-            TxtResponse.Location = new System.Drawing.Point(12, 54);
+            TxtResponse.Location = new System.Drawing.Point(12, 125);
             TxtResponse.Multiline = true;
             TxtResponse.Name = "TxtResponse";
             TxtResponse.PlaceholderText = "Response will appear here";
             TxtResponse.ReadOnly = true;
-            TxtResponse.Size = new System.Drawing.Size(600, 375);
+            TxtResponse.Size = new System.Drawing.Size(600, 370);
             TxtResponse.TabIndex = 1;
             // 
             // LblProcess
             // 
-            LblProcess.Location = new System.Drawing.Point(104, 16);
+            LblProcess.Depth = 0;
+            LblProcess.Font = new System.Drawing.Font("Roboto", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            LblProcess.ForeColor = System.Drawing.Color.FromArgb(222, 0, 0, 0);
+            LblProcess.Location = new System.Drawing.Point(118, 82);
+            LblProcess.MouseState = MaterialThemeCore.MouseState.HOVER;
             LblProcess.Name = "LblProcess";
-            LblProcess.Size = new System.Drawing.Size(508, 31);
+            LblProcess.Size = new System.Drawing.Size(494, 36);
             LblProcess.TabIndex = 2;
             LblProcess.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -66,12 +76,11 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(624, 441);
+            ClientSize = new System.Drawing.Size(624, 507);
             Controls.Add(LblProcess);
             Controls.Add(TxtResponse);
             Controls.Add(BtnSelectFile);
             Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
@@ -85,8 +94,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BtnSelectFile;
+        private MaterialThemeCore.MaterialControls.MaterialFlatButton BtnSelectFile;
         private System.Windows.Forms.TextBox TxtResponse;
-        private System.Windows.Forms.Label LblProcess;
+        private MaterialThemeCore.MaterialControls.MaterialLabel LblProcess;
     }
 }

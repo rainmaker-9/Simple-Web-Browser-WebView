@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MaterialThemeCore;
+using MaterialThemeCore.MaterialControls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Simple_Web_Browser
 {
-    public partial class FrmFavourites : Form
+    public partial class FrmFavourites : MaterialThemeForm
     {
         private List<ResponseInfo> favourites = new List<ResponseInfo>();
         private string favouritesFile = string.Empty;
@@ -15,6 +17,10 @@ namespace Simple_Web_Browser
         public FrmFavourites(string favouritesFile)
         {
             InitializeComponent();
+            MaterialTheme materialTheme = MaterialTheme.Instance;
+            materialTheme.AddFormToManage(this);
+            materialTheme.Theme = MaterialTheme.Themes.LIGHT;
+            materialTheme.MaterialColor = new MaterialColor(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
             this.favouritesFile = favouritesFile;
         }
 

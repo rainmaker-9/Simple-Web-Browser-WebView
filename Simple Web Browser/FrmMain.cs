@@ -7,10 +7,12 @@ using System.IO;
 using System.Net;
 using System.Text.Json;
 using System.Windows.Forms;
+using MaterialThemeCore;
+using MaterialThemeCore.MaterialControls;
 
 namespace Simple_Web_Browser
 {
-    public partial class FrmMain : Form
+    public partial class FrmMain : MaterialThemeForm
     {
         private WebView2 webView = null;
         private List<ResponseInfo> favourites = new List<ResponseInfo>();
@@ -21,6 +23,10 @@ namespace Simple_Web_Browser
         public FrmMain()
         {
             InitializeComponent();
+            MaterialTheme materialTheme = MaterialTheme.Instance;
+            materialTheme.AddFormToManage(this);
+            materialTheme.Theme = MaterialTheme.Themes.LIGHT;
+            materialTheme.MaterialColor = new MaterialColor(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
         public void FrmMain_Load(object sender, EventArgs e)
@@ -150,7 +156,7 @@ namespace Simple_Web_Browser
         {
             LoadHistory();
             FrmHistory history = (FrmHistory)sender;
-            if(history.clickedItem != null)
+            if (history.clickedItem != null)
             {
                 webView.Source = history.clickedItem.Uri;
             }
@@ -169,7 +175,10 @@ namespace Simple_Web_Browser
 
         private void closeTab_Click(object sender, EventArgs e)
         {
-            tabControl.Controls.Remove(tabControl.SelectedTab);
+            if (tabControl.TabPages.Count > 1)
+                tabControl.Controls.Remove(tabControl.SelectedTab);
+            else
+                Close();
         }
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -207,22 +216,15 @@ namespace Simple_Web_Browser
             };
             tabControl.Controls.Add(tab);
             tabControl.SelectTab(tabControl.TabCount - 1);
+            webView = new WebView2
+            {
+                Parent = tab,
+                Dock = DockStyle.Fill
+            };
             if (IsStartup)
             {
-                webView = new WebView2
-                {
-                    Parent = tab,
-                    Dock = DockStyle.Fill,
-                    Source = GetUri(Settings.Default.Homepage)
-                };
-            }
-            else
-            {
-                webView = new WebView2
-                {
-                    Parent = tab,
-                    Dock = DockStyle.Fill
-                };
+                materialTabSelector1.BaseTabControl = tabControl;
+                webView.Source = GetUri(Settings.Default.Homepage);
             }
             webView.NavigationCompleted += WebView_NavigationCompleted;
             tabControl.SelectedTab.Controls.Add(webView);
@@ -232,16 +234,16 @@ namespace Simple_Web_Browser
 
         private void WebView_NavigationCompleted(object sender, CoreWebView2NavigationCompletedEventArgs e)
         {
-            if(e.IsSuccess)
+            if (e.IsSuccess)
             {
                 txtUrl.Text = webView.Source.ToString();
-                SetTabInfo(webView?.CoreWebView2.DocumentTitle, e.HttpStatusCode);
+                SetTabInfo(webView?.CoreWebView2.DocumentTitle, $"HTTP Status Code: {e.HttpStatusCode}");
                 InitActionButtons();
                 AddUrlToHistoryList(webView.CoreWebView2.DocumentTitle, webView?.Source);
             }
             else
             {
-                SetTabInfo("Error!", (int)e.WebErrorStatus);
+                SetTabInfo("Error!", $"WebError Status Code: {(int)e.WebErrorStatus}");
             }
         }
 
@@ -277,9 +279,10 @@ namespace Simple_Web_Browser
             }
         }
 
-        private void SetTabInfo(string PageTitle, int HttpStatusCode)
+        private void SetTabInfo(string PageTitle, string HttpStatusCode)
         {
-            tabControl.SelectedTab.Text = $"{PageTitle} | HTTP Status Code: {HttpStatusCode}";
+            tabControl.SelectedTab.Text = $"{PageTitle} | {HttpStatusCode}";
+            materialTabSelector1.Refresh();
             ToggleOtherButtons(true);
         }
 
@@ -386,16 +389,6 @@ namespace Simple_Web_Browser
                 e.SuppressKeyPress = true;
                 webView.Source = GetUri(txtUrl.Text);
             }
-        }
-
-        private void txtUrl_Enter(object sender, EventArgs e)
-        {
-            txtUrl.SelectAll();
-        }
-
-        private void txtUrl_MouseClick(object sender, MouseEventArgs e)
-        {
-            txtUrl.SelectAll();
         }
     }
 }
